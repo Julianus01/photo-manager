@@ -1,5 +1,5 @@
 <!-- Form -->
-<form #form="ngForm" (ngSubmit)="loginWithEmailAndPassword(form)">
+<form name=form (ngSubmit)="f.form.valid && loginWithEmail()" #f="ngForm" novalidate>
 
   <!-- Email Input -->
   <div class="form-group">
@@ -10,11 +10,17 @@
         </div>
       </div>
 
-      <input type="email" name=email class="form-control" placeholder="Email address" ngModel required [email]="true">
+      <input placeholder="Email" type="email" class="form-control" name=email [(ngModel)]="model.email" #email="ngModel"
+        [ngClass]="{ 'is-invalid': f.submitted && email.invalid }" required email>
+      <div *ngIf="f.submitted && email.invalid" class="invalid-feedback">
+        <div *ngIf="email.errors.required">Email is required</div>
+        <div *ngIf="email.errors.email">Email must be a valid email address</div>
+      </div>
 
     </div>
   </div>
 
+  <!-- Password input -->
   <div class="form-group">
     <div class="input-group input-group-seamless">
       <div class="input-group-prepend">
@@ -23,7 +29,15 @@
         </div>
       </div>
 
-      <input type="text" class="form-control" placeholder="Password" type="password">
+      <input placeholder="Password" type="password" class="form-control" name="password" [(ngModel)]="model.password"
+        #password="ngModel" [ngClass]="{ 'is-invalid': f.submitted && password.invalid }" required minlength="6" />
+      <div *ngIf="f.submitted && password.invalid" class="invalid-feedback">
+        <div *ngIf="password.errors.required">Password is required</div>
+        <div *ngIf="password.errors.minlength">Password must be at least 6 characters</div>
+      </div>
+
+      <!-- Service error -->
+      <div *ngIf="error.hasError" class="error">{{ error.message }}</div>
 
     </div>
   </div>
