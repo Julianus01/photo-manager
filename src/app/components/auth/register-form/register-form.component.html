@@ -1,0 +1,45 @@
+<form name=form (ngSubmit)="f.form.valid && createAccount()" #f="ngForm" novalidate>
+
+  <!-- Email Input -->
+  <div class="form-group">
+    <div class="input-group input-group-seamless">
+      <div class="input-group-prepend">
+        <div class="input-group-text">
+          <i class="fa fa-envelope"></i>
+        </div>
+      </div>
+
+      <input placeholder="Email" type="email" class="form-control" name=email [(ngModel)]="model.email"
+        #email="ngModel" [ngClass]="{ 'is-invalid': f.submitted && email.invalid }" required email>
+      <div *ngIf="f.submitted && email.invalid" class="invalid-feedback">
+          <div *ngIf="email.errors.required">Email is required</div>
+          <div *ngIf="email.errors.email">Email must be a valid email address</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Password Input -->
+  <div class="form-group">
+    <div class="input-group input-group-seamless">
+      <div class="input-group-prepend">
+        <div class="input-group-text">
+          <i class="fa fa-lock"></i>
+        </div>
+      </div>
+
+      <input placeholder="Password" type="password" class="form-control" name="password" [(ngModel)]="model.password"
+        #password="ngModel" [ngClass]="{ 'is-invalid': f.submitted && password.invalid }" required minlength="6" />
+      <div *ngIf="f.submitted && password.invalid" class="invalid-feedback">
+          <div *ngIf="password.errors.required">Password is required</div>
+          <div *ngIf="password.errors.minlength">Password must be at least 6 characters</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Register Button -->
+  <div class="form-group">
+    <button type="submit" class="btn btn-primary btn-squared max-width">Register</button>
+  </div>
+</form>

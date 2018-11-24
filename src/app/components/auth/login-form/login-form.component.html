@@ -1,0 +1,58 @@
+<!-- Form -->
+<form #form="ngForm" (ngSubmit)="loginWithEmailAndPassword(form)">
+
+  <!-- Email Input -->
+  <div class="form-group">
+    <div class="input-group input-group-seamless">
+      <div class="input-group-prepend">
+        <div class="input-group-text">
+          <i class="fa fa-envelope"></i>
+        </div>
+      </div>
+
+      <input type="email" name=email class="form-control" placeholder="Email address" ngModel required [email]="true">
+
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="input-group input-group-seamless">
+      <div class="input-group-prepend">
+        <div class="input-group-text">
+          <i class="fa fa-lock"></i>
+        </div>
+      </div>
+
+      <input type="text" class="form-control" placeholder="Password" type="password">
+
+    </div>
+  </div>
+
+  <!-- Login Button -->
+  <div class="form-group">
+    <button type="submit" class="btn btn-primary btn-squared max-width">Login</button>
+  </div>
+</form>
+
+<!-- Separator -->
+<div class="form-group separator-container">
+  <hr class="hr-line">
+  <span class="separator-text">or</span>
+  <hr class="hr-line">
+</div>
+
+<!-- Facebook button -->
+<div class="form-group">
+  <button class="btn btn-primary btn-squared max-width" (click)="loginWithFacebook()">
+    <i class="fab fa-facebook-f mr-2"></i>
+    Login with facebook
+  </button>
+</div>
+
+<!-- Google button -->
+<div class="form-group">
+  <button class="btn btn-danger btn-squared max-width" (click)="loginWithGoogle()">
+    <i class="fab fa-google mr-2"></i>
+    Login with google
+  </button>
+</div>

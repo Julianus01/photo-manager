@@ -1,0 +1,13 @@
+.separator-container {
+  display: flex;
+  padding: 16px 0;
+
+  .hr-line {
+    flex-grow: 1;
+    margin: auto;
+  }
+
+  .separator-text {
+    margin: 0 16px;
+  }
+}
