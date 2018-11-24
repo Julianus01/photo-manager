@@ -15,9 +15,13 @@ export class LoginFormComponent implements OnInit {
     hasError: false,
     message: '',
   };
+  // model: EmailPasswordCredentials = {
+  //   email: '',
+  //   password: '',
+  // };
   model: EmailPasswordCredentials = {
-    email: '',
-    password: '',
+    email: 'admin@admin.com',
+    password: 'admin01',
   };
 
   constructor(
