@@ -1,0 +1,44 @@
+<form name=form (ngSubmit)="createPost()" #f="ngForm" class="form-container">
+
+  <!-- Image -->
+  <div class="round-absolute">
+    <i *ngIf="!imgFile" class="fa fa-camera icon-camera"></i>
+    <img class="image-preview" [src]="imageSelectedURL" alt="text">
+  </div>
+
+  <!-- Upload image -->
+  <div class="content-container">
+    <div class="form-group ml-auto mr-auto" style="width: fit-content;">
+      <label id="#bb" class="btn btn-pill with-shadows btn-mid-width upload-button">
+        Upload image
+        <input type="file" accept="image/*" (change)="handleImageInputChange($event.target.files)" class="input-image">
+      </label>
+    </div>
+
+    <!-- Datepicker -->
+    <div class="form-group">
+      <label for="datepicker">Date the photo was taken</label>
+
+      <div class="input-group input-group-seamless">
+        <div class="input-group-prepend">
+          <div class="input-group-text">
+            <i class="fa fa-calendar"></i>
+          </div>
+        </div>
+        <input #datePicker [ngModel]="date" (blur)="date = datePicker.value" name="datepicker" type="text" class="form-control date" id="datepicker"
+          data-provide="datepicker">
+      </div>
+    </div>
+
+    <!-- Textarea -->
+    <div class="form-group">
+      <label for="textarea">Description</label>
+      <textarea [(ngModel)]="description" name="textarea" class="form-control" cols="40" rows="5" style="resize: none;"></textarea>
+    </div>
+
+    <!-- Create button -->
+    <div class="form-group ml-auto mr-auto" style="width: fit-content;">
+      <button type="submit" class="btn btn-primary btn-pill btn-mid-width">Create</button>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,55 @@
+@import '~src/styles/colorPallete.scss';
+
+
+.form-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+
+    .round-absolute {
+      overflow: hidden;
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      box-shadow: $light-shadow;
+      background-color: $white;
+      width: 250px;
+      height: 250px;
+      margin-top: -125px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .image-preview {
+        width: 250px;
+        height: 250px;
+        position: absolute;
+        object-fit: cover;
+      }
+
+      .icon-camera {
+        font-size: 64px;
+      }
+    }
+
+    .content-container {
+      margin-top: 157px;
+      display: flex;
+      flex-direction: column;
+
+      .form-group {
+        margin-block-end: 1.5rem;
+
+        .upload-button {
+          color: $primary;
+
+          .input-image {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+
+

@@ -1,7 +1,9 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AuthService, User } from 'src/app/services/auth/auth.service';
 import { Post, PostsService } from 'src/app/services/posts/posts.service';
+import { MatDialog } from '@angular/material';
+import { PostFormDialogComponent } from '../post-form-dialog/post-form-dialog.component'
 
 @Component({
   selector: 'app-posts',
@@ -9,42 +11,37 @@ import { Post, PostsService } from 'src/app/services/posts/posts.service';
   styleUrls: ['./posts.component.scss']
 })
 export class PostsComponent implements OnInit {
-  @ViewChild('submitButton') submitButton: ElementRef;
 
   posts: Observable<Post[]>;
   imageSelected: File = null;
   imageSelectedURL: string;
-  hideModal: boolean;
 
   constructor(
     private postsService: PostsService,
     private authService: AuthService,
+    public dialog: MatDialog,
   ) { }
 
   async ngOnInit() {
-    this.submitButton.nativeElement.
-
     this.authService.user.subscribe((user: User): void => {
       this.posts = this.postsService.getPosts(user.uid);
       console.log(this.posts);
     })
   }
 
+  openDialog(): void {
+    const dialogRef = this.dialog.open(PostFormDialogComponent, {
+      width: '500px',
+      autoFocus: false,
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+
   protected createPost() {
     console.log('here')
-    this.hideModal = true;
-  }
-
-  protected handleImageInputChange(files): void {
-    this.imageSelected = files.item(0);
-    this.previewImageBeforeUpload(this.imageSelected);
-  }
-
-  private previewImageBeforeUpload(fileImage: File) {
-    const reader = new FileReader();
-    reader.onload = event => this.imageSelectedURL = event.target.result;
-
-    reader.readAsDataURL(fileImage);
   }
 
 }

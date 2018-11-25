@@ -10,12 +10,14 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { environment } from '../environments/environment';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 
 // Utils
 import { AuthGuard } from './utils/auth-guard/auth.guard';
 
 // UI
 import '../styles/shards/shards.min.js';
+import { MatDialogModule } from '@angular/material/dialog';
 
 // Components
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
@@ -25,6 +27,8 @@ import { LoginFormComponent } from './components/auth/login-form/login-form.comp
 import { RegisterFormComponent } from './components/auth/register-form/register-form.component';
 import { PostsComponent } from './components/posts/posts/posts.component';
 import { PostComponent } from './components/posts/post/post.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PostFormDialogComponent } from './components/posts/post-form-dialog/post-form-dialog.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +39,8 @@ import { PostComponent } from './components/posts/post/post.component';
     LoginFormComponent,
     RegisterFormComponent,
     PostsComponent,
-    PostComponent
+    PostComponent,
+    PostFormDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -44,13 +49,19 @@ import { PostComponent } from './components/posts/post/post.component';
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     AngularFirestoreModule,
+    AngularFireStorageModule,
     FormsModule,
+    BrowserAnimationsModule,
+    MatDialogModule
   ],
   providers: [
     AuthGuard,
   ],
   bootstrap: [
     AppComponent
+  ],
+  entryComponents: [
+    PostFormDialogComponent
   ]
 })
 export class AppModule { }
