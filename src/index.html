@@ -20,7 +20,7 @@
   <app-root></app-root>
 
   <script type="text/javascript">
-  // Resolves chrome osx bug of button remaining active after click
+    // Resolves chrome osx bug of button remaining active after click
     document.addEventListener('click', function (e) {
       if (document.activeElement.toString() == '[object HTMLButtonElement]') {
         document.activeElement.blur();

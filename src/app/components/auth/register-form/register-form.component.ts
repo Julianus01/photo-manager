@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService, EmailPasswordCredentials } from 'src/app/services/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register-form',
@@ -7,7 +8,7 @@ import { AuthService, EmailPasswordCredentials } from 'src/app/services/auth/aut
   styleUrls: ['./register-form.component.scss']
 })
 export class RegisterFormComponent implements OnInit {
-  private DEFAULT_SHOW_ERROR_TIME = 4000; // ms
+  private DEFAULT_SHOW_ERROR_TIME = 5000; // ms
 
   error = {
     hasError: false,
@@ -21,6 +22,7 @@ export class RegisterFormComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
+    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -28,8 +30,8 @@ export class RegisterFormComponent implements OnInit {
 
   protected async createAccount() {
     try {
-      const result = await this.authService.createAccount(this.model);
-      console.log(result);
+      await this.authService.createAccount(this.model);
+      this.router.navigate(['/gallery']);
     } catch (error) {
       this.showErrorMessageForMiliseconds(error.message);
     }

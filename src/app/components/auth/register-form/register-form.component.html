@@ -11,6 +11,7 @@
 
       <input placeholder="Email" type="email" class="form-control" name=email [(ngModel)]="model.email" #email="ngModel"
         [ngClass]="{ 'is-invalid': f.submitted && email.invalid }" required email>
+
       <div *ngIf="f.submitted && email.invalid" class="invalid-feedback">
         <div *ngIf="email.errors.required">Email is required</div>
         <div *ngIf="email.errors.email">Email must be a valid email address</div>

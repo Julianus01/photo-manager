@@ -8,15 +8,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  user: firebase.User;
 
   constructor(
     private authService: AuthService,
-    private router: Router
-  ) {
-    console.log(authService.user)
-    authService.user && router.navigate(['/gallery']);
-   }
+    private router: Router,
+  ) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.authService.user && this.router.navigate(['/gallery']);
+  }
 
 }

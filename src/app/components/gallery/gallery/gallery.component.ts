@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth/auth.service';
-import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
+import { Observable } from 'rxjs';
+import 'rxjs/add/operator/map';
+import { Post, GalleryService } from 'src/app/services/gallery.service';
 
 @Component({
   selector: 'app-gallery',
@@ -8,15 +11,25 @@ import { AngularFireAuth } from 'angularfire2/auth';
   styleUrls: ['./gallery.component.scss']
 })
 export class GalleryComponent implements OnInit {
-  user: any;
+  private user: firebase.User;
+
+  postsCollection: AngularFirestoreCollection<Post>;
+  posts: Observable<Post[]>;
+  snapshot: any;
 
   constructor(
     private authService: AuthService,
-  ) {
-    console.log(authService.user);
-  }
+    private afs: AngularFirestore,
+    private galleryService: GalleryService,
+  ) { }
 
   ngOnInit() {
+    this.postsCollection = this.afs.collection('posts');
+    this.posts = this.postsCollection.valueChanges();
+    this.snapshot = this.postsCollection.snapshotChanges().map(arr => {
+      console.log(arr);
+      arr.map(snap => snap.type);
+    })
   }
 
 }

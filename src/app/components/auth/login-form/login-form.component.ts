@@ -34,8 +34,8 @@ export class LoginFormComponent implements OnInit {
   protected async loginWithEmail(): Promise<any> {
     try {
       const result = await this.authService.loginWithEmail(this.model);
+      console.log('here')
       this.goToGallery();
-      console.log(result);
     } catch (error) {
       this.showErrorMessageForMiliseconds(error.message);
     }
@@ -44,7 +44,6 @@ export class LoginFormComponent implements OnInit {
   protected async loginWithFacebook(): Promise<any> {
     try {
       const result = await this.authService.loginWithFacebook();
-      console.log(result);
       this.goToGallery();
     } catch (error) {
       this.showErrorMessageForMiliseconds(error.message);
@@ -54,7 +53,6 @@ export class LoginFormComponent implements OnInit {
   protected async loginWithGoogle(): Promise<any> {
     try {
       const result = await this.authService.loginWithGoogle();
-      console.log(result);
       this.goToGallery();
     } catch (error) {
       this.showErrorMessageForMiliseconds(error.message);

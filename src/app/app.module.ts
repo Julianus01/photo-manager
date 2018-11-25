@@ -9,6 +9,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { environment } from '../environments/environment';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 // Utils
 import { AuthGuard } from './utils/auth-guard/auth.guard';
@@ -25,17 +26,26 @@ import { RegisterFormComponent } from './components/auth/register-form/register-
 import { GalleryComponent } from './components/gallery/gallery/gallery.component';
 
 @NgModule({
-  declarations: [AppComponent, NavbarComponent, HomeComponent, LoginComponent, LoginFormComponent, RegisterFormComponent, GalleryComponent],
+  declarations: [
+    AppComponent,
+    NavbarComponent,
+    HomeComponent,
+    LoginComponent,
+    LoginFormComponent,
+    RegisterFormComponent,
+    GalleryComponent
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
+    AngularFirestoreModule,
     FormsModule,
   ],
   providers: [
-    AuthGuard
+    AuthGuard,
   ],
   bootstrap: [
     AppComponent
