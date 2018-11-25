@@ -17,3 +17,23 @@
 .input-group-prepend {
   height: fit-content;
 }
+
+.text-align-center {
+  text-align: center;
+}
+
+.display-none {
+  display: none;
+}
+
+.btn-min-width {
+  min-width: 100px;
+}
+
+.btn-mid-width {
+  min-width: 250px;
+}
+
+.transition-all-2 {
+  transition: all .2s ease-in-out;
+}

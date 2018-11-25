@@ -23,7 +23,8 @@ import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { LoginFormComponent } from './components/auth/login-form/login-form.component';
 import { RegisterFormComponent } from './components/auth/register-form/register-form.component';
-import { GalleryComponent } from './components/gallery/gallery/gallery.component';
+import { PostsComponent } from './components/posts/posts/posts.component';
+import { PostComponent } from './components/posts/post/post.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { GalleryComponent } from './components/gallery/gallery/gallery.component
     LoginComponent,
     LoginFormComponent,
     RegisterFormComponent,
-    GalleryComponent
+    PostsComponent,
+    PostComponent
   ],
   imports: [
     BrowserModule,

@@ -31,7 +31,7 @@ export class RegisterFormComponent implements OnInit {
   protected async createAccount() {
     try {
       await this.authService.createAccount(this.model);
-      this.router.navigate(['/gallery']);
+      this.router.navigate(['/posts']);
     } catch (error) {
       this.showErrorMessageForMiliseconds(error.message);
     }

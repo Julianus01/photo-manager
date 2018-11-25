@@ -12,8 +12,7 @@ export class NavbarComponent implements OnInit {
     private authService: AuthService,
   ) { }
 
-  ngOnInit() { 
-    console.log(this.authService.user.subscribe(user => console.log(user.photoURL)))
+  ngOnInit() {
   }
 
   protected showNav = (): boolean =>

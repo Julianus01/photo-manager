@@ -35,7 +35,7 @@ export class LoginFormComponent implements OnInit {
     try {
       const result = await this.authService.loginWithEmail(this.model);
       console.log('here')
-      this.goToGallery();
+      this.goToPosts();
     } catch (error) {
       this.showErrorMessageForMiliseconds(error.message);
     }
@@ -44,7 +44,7 @@ export class LoginFormComponent implements OnInit {
   protected async loginWithFacebook(): Promise<any> {
     try {
       const result = await this.authService.loginWithFacebook();
-      this.goToGallery();
+      this.goToPosts();
     } catch (error) {
       this.showErrorMessageForMiliseconds(error.message);
     }
@@ -53,7 +53,7 @@ export class LoginFormComponent implements OnInit {
   protected async loginWithGoogle(): Promise<any> {
     try {
       const result = await this.authService.loginWithGoogle();
-      this.goToGallery();
+      this.goToPosts();
     } catch (error) {
       this.showErrorMessageForMiliseconds(error.message);
     }
@@ -67,6 +67,6 @@ export class LoginFormComponent implements OnInit {
     }, ms);
   }
 
-  private goToGallery = () => this.router.navigate(['gallery'])
+  private goToPosts = () => this.router.navigate(['posts'])
 
 }

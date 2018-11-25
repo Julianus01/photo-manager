@@ -1,0 +1,79 @@
+<div class="posts-page">
+  <button data-toggle="modal" data-target="#exampleModal" class="btn btn-pill with-shadows">
+    Create post
+  </button>
+
+  <div class="grid">
+    <div *ngFor="let post of posts | async" class=item>
+      <app-post [data]="post"></app-post>
+    </div>
+  </div>
+
+
+  <!-- Modal -->
+  <div [ngClass]="{'display-none': hideModal}"  class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+
+          <!-- Form -->
+          <form name=form (ngSubmit)="createPost()" #f="ngForm" class="form-container">
+
+            <!-- Image -->
+            <div class="round-absolute">
+              <i *ngIf="!imageSelected" class="fa fa-camera icon-camera"></i>
+              <img class="image-preview" [src]="imageSelectedURL" alt="text">
+            </div>
+
+            <!-- Upload image -->
+            <div class="content-container">
+              <div class="form-group ml-auto mr-auto" style="width: fit-content;">
+                <label id="#bb" class="btn btn-pill with-shadows btn-mid-width upload-button">
+                  Upload image
+                  <input type="file" accept="image/*" (change)="handleImageInputChange($event.target.files)" class="input-image">
+                </label>
+              </div>
+
+              <!-- Datepicker -->
+              <div class="form-group">
+                <label for="datepicker">Date the photo was taken</label>
+
+                <div class="input-group input-group-seamless">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      <i class="fa fa-calendar"></i>
+                    </div>
+                  </div>
+                  <input type="text" class="form-control date" id="datepicker" data-provide="datepicker">
+                </div>
+              </div>
+
+              <!-- Textarea -->
+              <div class="form-group">
+                <label for="textarea">Description</label>
+                <textarea id="textarea" class="form-control" name="Text1" cols="40" rows="5" style="resize: none;"></textarea>
+              </div>
+
+              <!-- Create button -->
+              <div class="form-group ml-auto mr-auto" style="width: fit-content;">
+                <button type="submit" class="btn btn-primary btn-pill btn-mid-width">Create</button>
+              </div>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /Modal -->
+
+</div>
+
+<script>
+  $("#datepicker").datepicker({
+    calendarWeeks: true,
+    autoclose: true,
+    todayHighlight: true
+  });
+
+</script>
