@@ -7,7 +7,7 @@ import { Post, PostsService } from 'src/app/services/posts/posts.service';
   styleUrls: ['./post.component.scss']
 })
 export class PostComponent implements OnInit {
-  @Input() data: any;
+  @Input() data: Post;
 
   constructor(
     private postsService: PostsService,
@@ -19,11 +19,14 @@ export class PostComponent implements OnInit {
 
   protected deletePost = async (): Promise<any> => {
     try {
-      console.log(this.data.id)
       await this.postsService.deletePost(this.data.id);
-    } catch(error) {
+    } catch (error) {
       console.log(error);
     }
-  } 
+  }
+
+  protected likeOrUnlikePost = async () => {
+    await this.postsService.likeOrUnlikePost(this.data.id, !this.data.isLiked);
+  }
 
 }

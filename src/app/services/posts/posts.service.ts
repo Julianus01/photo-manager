@@ -70,11 +70,13 @@ export class PostsService implements OnInit {
   }
 
   public deletePost = async (id: string): Promise<void> => {
-    try {
-      await this.postsCollection.doc(id).delete();
-    } catch (error) {
-      throw error;
-    }
+    await this.postsCollection.doc(id).delete();
+  }
+
+  public likeOrUnlikePost = async (id: string, value: boolean): Promise<void> => {
+    this.postsCollection.doc(id).update({
+      isLiked: value,
+    })
   }
 
 }
@@ -92,4 +94,5 @@ export interface Post {
   imgURL: string;
   description: string;
   date: string;
+  isLiked?: boolean;
 }
