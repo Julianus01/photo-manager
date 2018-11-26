@@ -3,14 +3,44 @@
 .posts-page {
   max-width: $boxed-page-width;
   margin: auto;
+  padding: 16px;
+  display: flex;
 
-  .grid {
-    display: grid;
-    margin: -8px;
-    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  .posts-content {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
 
-    .item {
-      padding: 8px;
+    .button-container {
+      display: flex;
+      justify-content: flex-end;
+      padding-top: 24px;
+      width: 160px;
+
+      .btn {
+        margin-left: auto;
+        height: fit-content;
+        width: 140px;
+        border: 1px solid #5a6169;
+
+        .fa {
+          font-size: $icon-size;
+        }
+      }
+    }
+
+    .posts-container {
+      flex-grow: 1;
+      padding-top: 24px;
+      padding-left: 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .item {
+        width: 100%;
+        margin-bottom: 4rem;
+      }
     }
   }
 }

@@ -33,8 +33,7 @@ export class LoginFormComponent implements OnInit {
 
   protected async loginWithEmail(): Promise<any> {
     try {
-      const result = await this.authService.loginWithEmail(this.model);
-      console.log('here')
+      await this.authService.loginWithEmail(this.model);
       this.goToPosts();
     } catch (error) {
       this.showErrorMessageForMiliseconds(error.message);

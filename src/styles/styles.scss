@@ -38,7 +38,7 @@
   transition: all .2s ease-in-out;
 }
 
-.fa {
+.fa-camera {
   color: #5a6169 !important;
 }
 
@@ -52,3 +52,32 @@
 .cdk-overlay-backdrop {
   background: rgba(40, 47, 60, .05) !important;
 }
+
+// Loader
+.spinner {
+  display: inline-block;
+  display: flex;
+  justify-content: center;
+  height: 20px;
+  align-items: center;
+}
+.spinner:after {
+  content: " ";
+  display: block;
+  width: 24px;
+  height: 24px;
+  margin: 1px;
+  border-radius: 50%;
+  border: 3px solid white;
+  border-color: white transparent white transparent;
+  animation: spinner 1.2s linear infinite;
+}
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+

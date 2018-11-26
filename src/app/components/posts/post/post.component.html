@@ -1,3 +1,21 @@
-<div>Simple post</div>
+<div class="post-wrapper">
 
-<div> {{ data | json }}</div>
+  <div class="post-container">
+    <img [src]=data.imgURL alt="" class="image">
+    <div class=post-content>
+      <h4>{{ data.title }}</h4>
+      <p class=description>{{ data.description }}</p>
+    </div>
+
+    <footer class=post-footer>
+        <i class="fa fa-calendar-alt"></i>
+      <span>{{ data.date }}</span>
+    </footer>
+  </div>
+
+  <div class="actions-container">
+    <button (click)="deletePost()" class="btn btn-icon with-shadows">
+      <i class="fa fa-times"></i>
+    </button>
+  </div>
+</div>

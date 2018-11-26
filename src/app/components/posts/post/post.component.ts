@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Post } from 'src/app/services/posts/posts.service';
+import { Post, PostsService } from 'src/app/services/posts/posts.service';
 
 @Component({
   selector: 'app-post',
@@ -7,12 +7,23 @@ import { Post } from 'src/app/services/posts/posts.service';
   styleUrls: ['./post.component.scss']
 })
 export class PostComponent implements OnInit {
-  @Input() data: Post;
+  @Input() data: any;
 
-  constructor() { }
+  constructor(
+    private postsService: PostsService,
+  ) { }
 
   ngOnInit() {
     console.log(this.data)
   }
+
+  protected deletePost = async (): Promise<any> => {
+    try {
+      console.log(this.data.id)
+      await this.postsService.deletePost(this.data.id);
+    } catch(error) {
+      console.log(error);
+    }
+  } 
 
 }

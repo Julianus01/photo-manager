@@ -9,10 +9,13 @@ import { PostsService } from '../../../services/posts/posts.service';
 })
 export class PostFormDialogComponent implements OnInit {
 
+  isLoading: boolean = false;
+
   imageSelectedURL: string;
   imgFile: File;
   date: string;
   description: string;
+  title: string;
 
 
   constructor(
@@ -24,14 +27,21 @@ export class PostFormDialogComponent implements OnInit {
   ngOnInit() {
   }
 
-  protected createPost() {
-    const payload = {
-      imgFile: this.imgFile,
-      date: this.date,
-      description: this.description,
-    }
+  protected async createPost() {
+    try {
+      const payload = {
+        imgFile: this.imgFile,
+        date: this.date,
+        description: this.description,
+        title: this.title,
+      }
 
-    this.postsService.addPost(payload);
+      this.isLoading = true;
+      const result = await this.postsService.addPost(payload);
+      this.isLoading = false;
+    } catch (error) {
+      this.handleError(error);
+    }
   }
 
   protected handleImageInputChange(files): void {
@@ -48,6 +58,10 @@ export class PostFormDialogComponent implements OnInit {
     reader.onload = (event: any) => this.imageSelectedURL = event.target.result;
 
     reader.readAsDataURL(fileImage);
+  }
+
+  private handleError = error => {
+    console.log(error);
   }
 
 }

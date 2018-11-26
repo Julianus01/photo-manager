@@ -1,0 +1,55 @@
+@import '~src/styles/colorPallete.scss';
+
+.post-wrapper {
+    display: flex;
+
+    .post-container {
+        border-radius: 0.625rem;
+        box-shadow: $light-shadow;
+        overflow: hidden;
+        display: flex;
+        max-width: 500px;
+        flex-direction: column;
+        flex-grow: 1;
+        border: 1px solid #efefef;
+    
+        .image {
+            width: 100%;
+            align-self: baseline;
+            max-height: 500px;
+            margin: auto;
+            object-fit: contain;
+            background-color: #fafafa;
+        }
+
+        .post-content {
+            padding: 32px;
+
+            .description {
+                margin-top: 1.75rem;
+            }
+        }
+
+        .post-footer {
+            padding: 32px;
+
+            .fa {
+                margin-right: 8px;
+                color: #abb6bf;
+            }
+        }
+    }
+
+    .actions-container {
+        margin-left: 32px;
+
+        .btn-icon {
+            width: fit-content;
+
+            .fa {
+                font-size: $icon-size;
+                color: #abb6bf;
+            }
+        }
+    }
+}

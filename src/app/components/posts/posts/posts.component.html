@@ -1,20 +1,15 @@
 <div class="posts-page">
-  <button (click)="openDialog()" class="btn btn-pill with-shadows">
-    Create post
-  </button>
+  <div class="posts-content">
+    <div class="button-container">
+      <button (click)="openDialog()" class="btn btn-pill">
+        <i class="fa fa-camera"></i>
+      </button>
+    </div>
 
-  <div class="grid">
-    <div *ngFor="let post of posts | async" class=item>
-      <app-post [data]="post"></app-post>
+    <div class="posts-container">
+      <div *ngFor="let post of posts | async | reverse" class=item>
+        <app-post [data]="post"></app-post>
+      </div>
     </div>
   </div>
 </div>
-
-<!-- <script>
-  $("#datepicker").datepicker({
-    calendarWeeks: true,
-    autoclose: true,
-    todayHighlight: true
-  });
-
-</script> -->

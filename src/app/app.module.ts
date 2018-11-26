@@ -29,6 +29,7 @@ import { PostsComponent } from './components/posts/posts/posts.component';
 import { PostComponent } from './components/posts/post/post.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PostFormDialogComponent } from './components/posts/post-form-dialog/post-form-dialog.component';
+import { ReversePipe } from './utils/pipes/reverse.pipe';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { PostFormDialogComponent } from './components/posts/post-form-dialog/pos
     RegisterFormComponent,
     PostsComponent,
     PostComponent,
-    PostFormDialogComponent
+    PostFormDialogComponent,
+    ReversePipe
   ],
   imports: [
     BrowserModule,
@@ -52,7 +54,7 @@ import { PostFormDialogComponent } from './components/posts/post-form-dialog/pos
     AngularFireStorageModule,
     FormsModule,
     BrowserAnimationsModule,
-    MatDialogModule
+    MatDialogModule,
   ],
   providers: [
     AuthGuard,

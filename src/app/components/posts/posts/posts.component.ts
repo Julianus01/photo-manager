@@ -3,7 +3,8 @@ import { Observable } from 'rxjs';
 import { AuthService, User } from 'src/app/services/auth/auth.service';
 import { Post, PostsService } from 'src/app/services/posts/posts.service';
 import { MatDialog } from '@angular/material';
-import { PostFormDialogComponent } from '../post-form-dialog/post-form-dialog.component'
+import { PostFormDialogComponent } from '../post-form-dialog/post-form-dialog.component';
+import { DocumentChangeAction } from 'angularfire2/firestore';
 
 @Component({
   selector: 'app-posts',
@@ -25,7 +26,6 @@ export class PostsComponent implements OnInit {
   async ngOnInit() {
     this.authService.user.subscribe((user: User): void => {
       this.posts = this.postsService.getPosts(user.uid);
-      console.log(this.posts);
     })
   }
 
@@ -36,12 +36,8 @@ export class PostsComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-    });
-  }
 
-  protected createPost() {
-    console.log('here')
+    });
   }
 
 }

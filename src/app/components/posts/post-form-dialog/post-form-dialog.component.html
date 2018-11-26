@@ -15,19 +15,10 @@
       </label>
     </div>
 
-    <!-- Datepicker -->
+    <!-- Title -->
     <div class="form-group">
-      <label for="datepicker">Date the photo was taken</label>
-
-      <div class="input-group input-group-seamless">
-        <div class="input-group-prepend">
-          <div class="input-group-text">
-            <i class="fa fa-calendar"></i>
-          </div>
-        </div>
-        <input #datePicker [ngModel]="date" (blur)="date = datePicker.value" name="datepicker" type="text" class="form-control date" id="datepicker"
-          data-provide="datepicker">
-      </div>
+      <label for="title">Title</label>
+      <input placeholder="Title" type="text" class="form-control" name=title [(ngModel)]="title" required>
     </div>
 
     <!-- Textarea -->
@@ -36,9 +27,27 @@
       <textarea [(ngModel)]="description" name="textarea" class="form-control" cols="40" rows="5" style="resize: none;"></textarea>
     </div>
 
+    <!-- Datepicker -->
+    <div class="form-group">
+      <label for="datepicker">Date the photo was taken</label>
+
+      <div class="input-group input-group-seamless">
+        <div class="input-group-prepend">
+          <div class="input-group-text">
+            <i class="fa fa-calendar-alt"></i>
+          </div>
+        </div>
+        <input #datePicker [ngModel]="date" (blur)="date = datePicker.value" name="datepicker" type="text" class="form-control date"
+          id="datepicker" data-provide="datepicker">
+      </div>
+    </div>
+
     <!-- Create button -->
     <div class="form-group ml-auto mr-auto" style="width: fit-content;">
-      <button type="submit" class="btn btn-primary btn-pill btn-mid-width">Create</button>
+      <button type="submit" class="btn btn-primary btn-pill btn-mid-width">
+        <span *ngIf="!isLoading">Create Post</span>
+        <div *ngIf="isLoading" class="spinner"></div>
+      </button>
     </div>
   </div>
 </form>
