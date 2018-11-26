@@ -1,0 +1,10 @@
+<div class=content>
+  <p class=message>{{ data.message }}</p>
+</div>
+
+<footer class=footer>
+  <button class="btn btn-pill" (click)=confirm()>
+    <span *ngIf="!isLoading">Delete</span>
+    <div *ngIf="isLoading" class="spinner-blue"></div>
+  </button>
+</footer>

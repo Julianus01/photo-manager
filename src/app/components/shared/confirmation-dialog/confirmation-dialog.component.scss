@@ -1,0 +1,19 @@
+.content {
+    display: grid;
+    margin-top: 2rem;
+
+    .message {
+        text-align: center;
+    }
+}
+
+.footer {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 1rem;
+    border-top: 1px solid #efefef;
+
+    .btn {
+        margin: auto;
+    }
+}

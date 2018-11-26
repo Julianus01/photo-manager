@@ -30,6 +30,7 @@ import { PostComponent } from './components/posts/post/post.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PostFormDialogComponent } from './components/posts/post-form-dialog/post-form-dialog.component';
 import { ReversePipe } from './utils/pipes/reverse.pipe';
+import { ConfirmationDialogComponent } from './components/shared/confirmation-dialog/confirmation-dialog.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { ReversePipe } from './utils/pipes/reverse.pipe';
     PostsComponent,
     PostComponent,
     PostFormDialogComponent,
-    ReversePipe
+    ReversePipe,
+    ConfirmationDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +65,8 @@ import { ReversePipe } from './utils/pipes/reverse.pipe';
     AppComponent
   ],
   entryComponents: [
-    PostFormDialogComponent
+    PostFormDialogComponent,
+    ConfirmationDialogComponent
   ]
 })
 export class AppModule { }

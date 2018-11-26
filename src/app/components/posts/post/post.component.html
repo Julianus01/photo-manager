@@ -14,10 +14,11 @@
   </div>
 
   <div class="actions-container">
-    <button (click)="likeOrUnlikePost()" class="btn btn-icon">
+    <button (click)="likeOrUnlikePost()" class="btn btn-icon" data-toggle="tooltip" data-placement="top" title="Like">
       <i class="fa fa-heart" [ngClass]="{'red-heart': data.isLiked}"></i>
     </button>
-    <button (click)="deletePost()" class="btn btn-icon">
+
+    <button (click)="openDeleteConfirmationDialog()" class="btn btn-icon">
       <i class="fa fa-times"></i>
     </button>
   </div>

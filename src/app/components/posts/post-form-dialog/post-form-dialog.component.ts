@@ -37,8 +37,10 @@ export class PostFormDialogComponent implements OnInit {
       }
 
       this.isLoading = true;
-      const result = await this.postsService.addPost(payload);
+      await this.postsService.addPost(payload);
+
       this.isLoading = false;
+      this.close(true);
     } catch (error) {
       this.handleError(error);
     }
@@ -62,6 +64,10 @@ export class PostFormDialogComponent implements OnInit {
 
   private handleError = error => {
     console.log(error);
+  }
+
+  private close = (value: boolean): void => {
+    this.dialogRef.close(value);
   }
 
 }

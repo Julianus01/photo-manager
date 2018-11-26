@@ -14,7 +14,7 @@
     box-shadow: $light-shadow;
     overflow: hidden;
     display: flex;
-    max-width: 500px;
+    max-width: 614px;
     flex-direction: column;
     flex-grow: 1;
     border: 1px solid #efefef;
@@ -22,14 +22,14 @@
     .image {
       width: 100%;
       align-self: baseline;
-      max-height: 500px;
+      max-height: 614px;
       margin: auto;
       object-fit: contain;
       background-color: #fafafa;
     }
 
     .post-content {
-      padding: 32px;
+      padding: 56px;
 
       .description {
         margin-top: 1.75rem;
@@ -37,7 +37,8 @@
     }
 
     .post-footer {
-      padding: 32px;
+      padding: 56px;
+      padding-top: 0;
 
       .fa {
         margin-right: 8px;

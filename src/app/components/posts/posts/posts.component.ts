@@ -36,7 +36,7 @@ export class PostsComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-
+      result && console.log('Added');
     });
   }
 
