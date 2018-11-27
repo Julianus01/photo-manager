@@ -2,10 +2,36 @@
 
   <div class="post-container">
     <img [src]=data.imgURL alt="" class="image">
-    <div class=post-content>
+    <section class=post-content>
       <h4>{{ data.title }}</h4>
       <p class=description>{{ data.description }}</p>
-    </div>
+
+      <div *ngIf="authService.user | async as user" class=comments-container>
+        <img *ngIf="user.photoURL" [src]="user.photoURL" class=comments-profile-picture>
+
+        <div class=comments>
+          <div *ngFor="let comment of comments | async" class="comment">
+            <p class=comment-text>
+              {{ comment.message }}
+            </p>
+
+            <div class=comment-actions-container>
+              <button (click)="deleteComment(user.uid, comment.id)" class="btn btn-icon">
+                <i class="fa fa-times"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="authService.user | async as user" class="form-group add-comment">
+        <p *ngIf="!showAddComment" class=show-add-comment-button (click)="showAddComment = !showAddComment">Add comment</p>
+        <textarea *ngIf="showAddComment" [(ngModel)]="inputs.comment.message" placeholder="Add a comment..." class="form-control"
+          rows="3" style="resize: none;">
+        </textarea>
+        <button *ngIf="showAddComment" class="btn btn-pill add-comment-button" (click)="addComment(user.uid)">Add</button>
+      </div>
+    </section>
 
     <footer class=post-footer>
       <i class="fa fa-calendar-alt"></i>

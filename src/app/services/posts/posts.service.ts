@@ -69,12 +69,19 @@ export class PostsService implements OnInit {
     })
   }
 
-  public deletePost = async (id: string): Promise<void> => {
-    await this.postsCollection.doc(id).delete();
+  public deletePost = async (postId: string): Promise<void> => {
+    await this.postsCollection.doc(postId).delete();
   }
 
-  public likeOrUnlikePost = async (id: string, value: boolean): Promise<void> => {
-    this.postsCollection.doc(id).update({
+  public addComment = (postId: string, payload) => {
+    const commentId = this.afs.createId();
+    console.log(postId)
+
+    this.postsCollection.doc(postId).collection('comments').add({ message: payload.message })
+  }
+
+  public likeOrUnlikePost = async (postId: string, value: boolean): Promise<void> => {
+    this.postsCollection.doc(postId).update({
       isLiked: value,
     })
   }
@@ -95,4 +102,10 @@ export interface Post {
   description: string;
   date: string;
   isLiked?: boolean;
+  comments?: Array<Comment>;
+}
+
+export interface Comment {
+  id?: string;
+  message: string;
 }

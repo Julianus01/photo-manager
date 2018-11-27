@@ -2,6 +2,9 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Post, PostsService } from 'src/app/services/posts/posts.service';
 import { ConfirmationDialogComponent } from "../../shared/confirmation-dialog/confirmation-dialog.component";
 import { MatDialog } from "@angular/material";
+import { AuthService } from '../../../services/auth/auth.service';
+import { CommentsService } from 'src/app/services/comments/comments.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-post',
@@ -10,14 +13,27 @@ import { MatDialog } from "@angular/material";
 })
 export class PostComponent implements OnInit {
   @Input() data: Post;
+  showAddComment: boolean = false;
+
+  comments: Observable<Comment[]>
+
+  inputs = {
+    comment: {
+      message: '',
+    }
+  }
 
   constructor(
     public dialog: MatDialog,
     private postsService: PostsService,
+    private authService: AuthService,
+    private commentsService: CommentsService,
   ) { }
 
   ngOnInit() {
-    console.log(this.data)
+    this.authService.user.subscribe(user => {
+      this.comments = this.commentsService.getComments(user.uid, this.data.id)
+    })
   }
 
   public openDeleteConfirmationDialog = (id: string): void => {
@@ -43,6 +59,16 @@ export class PostComponent implements OnInit {
     } catch (error) {
       console.log(error);
     }
+  }
+
+  protected async deleteComment(uid: string, commentId: string): Promise<void> {
+    await this.commentsService.deleteComment(uid, this.data.id, commentId);
+  }
+
+  protected async addComment(uid: string): Promise<void> {
+    this.showAddComment = false;
+    await this.commentsService.addComment(uid, this.data.id, this.inputs.comment);
+    this.inputs.comment.message = '';
   }
 
   protected likeOrUnlikePost = async () => {

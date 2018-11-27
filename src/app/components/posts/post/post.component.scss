@@ -3,12 +3,6 @@
 .post-wrapper {
   display: flex;
 
-  &:hover {
-    .actions-container {
-      visibility: visible;
-    }
-  }
-
   .post-container {
     border-radius: 0.625rem;
     box-shadow: $light-shadow;
@@ -34,6 +28,75 @@
       .description {
         margin-top: 1.75rem;
       }
+
+      .add-comment {
+        margin-left: 4rem;
+
+        .show-add-comment-button {
+          margin-bottom: 0;
+          font-weight: bold;
+          cursor: pointer;
+          font-size: 12px;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+
+        .add-comment-button {
+          float: right;
+          width: 100px;
+          color: $primary;
+          background-color: transparent;
+        }
+      }
+
+      .comments-container {
+        display: flex;
+        margin-top: 6rem;
+
+        .comments-profile-picture {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          margin-top: 4px;
+        }
+
+        .comments {
+          margin-left: 1rem;
+          width: 100%;
+
+          .comment {
+            border-left: 1px solid $border-color;
+            margin-bottom: 1rem;
+            padding-left: 1rem;
+            display: flex;
+
+            &:hover {
+              .comment-actions-container {
+                button {
+                  visibility: visible;
+                }
+              }
+            }
+
+            .comment-text {
+              flex-grow: 1;
+              margin-bottom: 0;
+            }
+
+            .comment-actions-container {
+              button {
+                font-size: 18px;
+                color: #abb6bf;
+                padding: 0;
+                visibility: hidden;
+                margin-left: 1rem;
+              }
+            }
+          }
+        }
+      }
     }
 
     .post-footer {
@@ -49,7 +112,6 @@
 
   .actions-container {
     margin-left: 32px;
-    visibility: hidden;
 
     .btn-icon {
       width: fit-content;

@@ -32,6 +32,9 @@ import { PostFormDialogComponent } from './components/posts/post-form-dialog/pos
 import { ReversePipe } from './utils/pipes/reverse.pipe';
 import { ConfirmationDialogComponent } from './components/shared/confirmation-dialog/confirmation-dialog.component';
 
+// Services
+import { CommentsService } from './services/comments/comments.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -60,6 +63,7 @@ import { ConfirmationDialogComponent } from './components/shared/confirmation-di
   ],
   providers: [
     AuthGuard,
+    CommentsService
   ],
   bootstrap: [
     AppComponent
