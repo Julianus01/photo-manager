@@ -24,10 +24,8 @@ export class CommentsService {
     }))
   }
 
-  public async addComment(uid: string, postId: string, payload): Promise<firebase.firestore.DocumentReference> {
-    return this.afs.collection(uid).doc(postId).collection('comments').add({
-      message: payload.message,
-    })
+  public async addComment(uid: string, postId: string, comment: Comment): Promise<firebase.firestore.DocumentReference> {
+    return this.afs.collection(uid).doc(postId).collection('comments').add(comment)
   }
 
   public deleteComment(uid: string, postId: string, commentId: string): Promise<void> {

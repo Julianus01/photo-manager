@@ -40,4 +40,6 @@ export class PostsComponent implements OnInit {
     });
   }
 
+  protected trackByFn = (index: number, post: Post) => index;
+
 }

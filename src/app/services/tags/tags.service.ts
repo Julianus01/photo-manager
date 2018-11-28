@@ -24,11 +24,8 @@ export class TagsService {
     }))
   }
 
-  public async addTag(uid: string, postId: string, payload): Promise<firebase.firestore.DocumentReference> {
-    console.log('here')
-    return this.afs.collection(uid).doc(postId).collection('tags').add({
-      value: payload.value,
-    })
+  public async addTag(uid: string, postId: string, tag: Tag): Promise<firebase.firestore.DocumentReference> {
+    return this.afs.collection(uid).doc(postId).collection('tags').add(tag);
   }
 
   public deleteTag(uid: string, postId: string, tagId: string): Promise<void> {

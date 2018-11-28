@@ -14,7 +14,7 @@
 
         <p *ngIf="!showAddTagInput" class=show-add-tag-button (click)="showAddTagInput = !showAddTagInput">Add tag</p>
         <input *ngIf="showAddTagInput" [(ngModel)]=tag.value name="tag" class="form-control" placeholder="Add tag..." (keyup.enter)="addTag(user.uid)">
-        <button *ngIf="showAddTagInput" class="btn btn-pill add-tag-button" (click)="addTag()">Add tag</button>
+        <button *ngIf="showAddTagInput" class="btn btn-pill add-tag-button" (click)="addTag(user.uid)">Add tag</button>
         <button *ngIf="showAddTagInput" class="btn btn-pill cancel-button" (click)="showAddTagInput = !showAddTagInput">Cancel</button>
       </div>
       <!-- /Tags -->
@@ -22,6 +22,7 @@
       <!-- Comments -->
       <div *ngIf="authService.user | async as user" class=comments-container>
         <img *ngIf="user.photoURL" [src]="user.photoURL" class=comments-profile-picture>
+        <i *ngIf="!user.photoURL" class="fa fa-user-circle comments-profile-icon"></i>
 
         <div class=comments>
           <div *ngFor="let comment of comments | async" class="comment">
