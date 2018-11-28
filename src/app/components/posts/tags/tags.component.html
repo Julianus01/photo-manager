@@ -1,0 +1,6 @@
+<div class=tags-container>
+  <div *ngFor="let tag of tags | async" class=tag>
+    <p class=tag-text>{{ tag.value }}</p>
+    <i class="fa fa-times tag-icon" (click)="deleteTag(tag.id)"></i>
+  </div>
+</div>

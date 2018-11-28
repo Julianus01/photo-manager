@@ -6,6 +6,20 @@
       <h4>{{ data.title }}</h4>
       <p class=description>{{ data.description }}</p>
 
+      <!-- Tags -->
+      <div *ngIf="authService.user | async as user" class="form-group add-tag-container">
+        <div class="form-group">
+          <app-tags [postId]=data.id [user]=user></app-tags>
+        </div>
+
+        <p *ngIf="!showAddTagInput" class=show-add-tag-button (click)="showAddTagInput = !showAddTagInput">Add tag</p>
+        <input *ngIf="showAddTagInput" [(ngModel)]=tag.value name="tag" class="form-control" placeholder="Add tag..." (keyup.enter)="addTag(user.uid)">
+        <button *ngIf="showAddTagInput" class="btn btn-pill add-tag-button" (click)="addTag()">Add tag</button>
+        <button *ngIf="showAddTagInput" class="btn btn-pill cancel-button" (click)="showAddTagInput = !showAddTagInput">Cancel</button>
+      </div>
+      <!-- /Tags -->
+
+      <!-- Comments -->
       <div *ngIf="authService.user | async as user" class=comments-container>
         <img *ngIf="user.photoURL" [src]="user.photoURL" class=comments-profile-picture>
 
@@ -23,15 +37,20 @@
           </div>
         </div>
       </div>
+      <!-- /Comments -->
 
-      <div *ngIf="authService.user | async as user" class="form-group add-comment">
-        <p *ngIf="!showAddComment" class=show-add-comment-button (click)="showAddComment = !showAddComment">Add comment</p>
-        <textarea *ngIf="showAddComment" [(ngModel)]="inputs.comment.message" placeholder="Add a comment..." class="form-control"
+      <!-- Add comment form -->
+      <div *ngIf="authService.user | async as user" class="form-group add-comment-container">
+        <p *ngIf="!showAddCommentInput" class=show-add-comment-button (click)="showAddCommentInput = !showAddCommentInput">Add
+          comment</p>
+        <textarea *ngIf="showAddCommentInput" [(ngModel)]="inputs.comment.message" placeholder="Add a comment..." class="form-control"
           rows="3" style="resize: none;">
         </textarea>
-        <button *ngIf="showAddComment" class="btn btn-pill add-comment-button" (click)="addComment(user.uid)">Add</button>
+        <button *ngIf="showAddCommentInput" class="btn btn-pill add-comment-button" (click)="addComment(user.uid)">Add comment</button>
+        <button *ngIf="showAddCommentInput" class="btn btn-pill cancel-button" (click)="showAddCommentInput = !showAddCommentInput">Cancel</button>
       </div>
     </section>
+    <!-- Add comment form -->
 
     <footer class=post-footer>
       <i class="fa fa-calendar-alt"></i>
@@ -39,6 +58,7 @@
     </footer>
   </div>
 
+  <!-- Actions -->
   <div class="actions-container">
     <button (click)="likeOrUnlikePost()" class="btn btn-icon" data-toggle="tooltip" data-placement="top" title="Like">
       <i class="fa fa-heart" [ngClass]="{'red-heart': data.isLiked}"></i>
@@ -48,4 +68,5 @@
       <i class="fa fa-times"></i>
     </button>
   </div>
+  <!-- /Actions -->
 </div>

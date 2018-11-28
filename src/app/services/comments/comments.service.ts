@@ -34,3 +34,9 @@ export class CommentsService {
     return this.afs.collection(uid).doc(postId).collection('comments').doc(commentId).delete();
   }
 }
+
+
+export interface Comment {
+  id?: string;
+  message: string;
+}

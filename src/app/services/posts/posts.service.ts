@@ -104,8 +104,3 @@ export interface Post {
   isLiked?: boolean;
   comments?: Array<Comment>;
 }
-
-export interface Comment {
-  id?: string;
-  message: string;
-}

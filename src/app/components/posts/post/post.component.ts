@@ -5,6 +5,7 @@ import { MatDialog } from "@angular/material";
 import { AuthService } from '../../../services/auth/auth.service';
 import { CommentsService } from 'src/app/services/comments/comments.service';
 import { Observable } from 'rxjs';
+import { TagsService, Tag } from 'src/app/services/tags/tags.service';
 
 @Component({
   selector: 'app-post',
@@ -13,7 +14,8 @@ import { Observable } from 'rxjs';
 })
 export class PostComponent implements OnInit {
   @Input() data: Post;
-  showAddComment: boolean = false;
+  showAddCommentInput: boolean = false;
+  showAddTagIput: boolean = false;
 
   comments: Observable<Comment[]>
 
@@ -23,11 +25,14 @@ export class PostComponent implements OnInit {
     }
   }
 
+  tag: Tag = { value: '' };
+
   constructor(
     public dialog: MatDialog,
     private postsService: PostsService,
     private authService: AuthService,
     private commentsService: CommentsService,
+    private tagsService: TagsService,
   ) { }
 
   ngOnInit() {
@@ -53,6 +58,19 @@ export class PostComponent implements OnInit {
     });
   };
 
+  protected async addTag(uid: string): Promise<void> {
+    if (this.shouldTagBeAdded(this.tag)) {
+      await this.tagsService.addTag(uid,  this.data.id, this.tag);
+      this.tag.value = '';
+    }
+  }
+
+  private shouldTagBeAdded(tag: Tag): boolean {
+    if (!tag.value) return false;
+
+    return true;
+  }
+
   protected deletePost = async (): Promise<any> => {
     try {
       await this.postsService.deletePost(this.data.id);
@@ -66,7 +84,7 @@ export class PostComponent implements OnInit {
   }
 
   protected async addComment(uid: string): Promise<void> {
-    this.showAddComment = false;
+    this.showAddCommentInput = false;
     await this.commentsService.addComment(uid, this.data.id, this.inputs.comment);
     this.inputs.comment.message = '';
   }

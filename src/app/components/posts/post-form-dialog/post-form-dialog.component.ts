@@ -17,6 +17,9 @@ export class PostFormDialogComponent implements OnInit {
   description: string;
   title: string;
 
+  tags: Array<string>;
+  tag: string;
+
 
   constructor(
     public dialogRef: MatDialogRef<PostFormDialogComponent>,

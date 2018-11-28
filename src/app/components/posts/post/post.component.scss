@@ -29,7 +29,29 @@
         margin-top: 1.75rem;
       }
 
-      .add-comment {
+      .add-tag-container {
+
+        .show-add-tag-button {
+          margin-bottom: 0;
+          font-weight: bold;
+          cursor: pointer;
+          font-size: 12px;
+          margin-left: 6px;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+
+      .add-tag-button {
+        float: right;
+        width: 100px;
+        color: $primary;
+        background-color: transparent;
+      }
+
+      .add-comment-container {
         margin-left: 4rem;
 
         .show-add-comment-button {
@@ -45,7 +67,6 @@
 
         .add-comment-button {
           float: right;
-          width: 100px;
           color: $primary;
           background-color: transparent;
         }
@@ -126,4 +147,10 @@
       }
     }
   }
+}
+
+.cancel-button {
+  float: right;
+  color: $text-color;
+  background-color: transparent;
 }

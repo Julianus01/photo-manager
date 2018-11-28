@@ -34,6 +34,7 @@ import { ConfirmationDialogComponent } from './components/shared/confirmation-di
 
 // Services
 import { CommentsService } from './services/comments/comments.service';
+import { TagsComponent } from './components/posts/tags/tags.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { CommentsService } from './services/comments/comments.service';
     PostComponent,
     PostFormDialogComponent,
     ReversePipe,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    TagsComponent
   ],
   imports: [
     BrowserModule,

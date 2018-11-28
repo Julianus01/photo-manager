@@ -2,54 +2,52 @@
 
 
 .form-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+
+  .round-absolute {
+    overflow: hidden;
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    box-shadow: $light-shadow;
+    background-color: $white;
+    width: 250px;
+    height: 250px;
+    margin-top: -125px;
+    border-radius: 50%;
     display: flex;
     justify-content: center;
-    width: 100%;
+    align-items: center;
 
-    .round-absolute {
-      overflow: hidden;
-      position: absolute;
-      width: 100px;
-      height: 100px;
-      box-shadow: $light-shadow;
-      background-color: $white;
+    .image-preview {
       width: 250px;
       height: 250px;
-      margin-top: -125px;
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      .image-preview {
-        width: 250px;
-        height: 250px;
-        position: absolute;
-        object-fit: cover;
-      }
-
-      .icon-camera {
-        font-size: 64px;
-      }
+      position: absolute;
+      object-fit: cover;
     }
 
-    .content-container {
-      margin-top: 157px;
-      display: flex;
-      flex-direction: column;
+    .icon-camera {
+      font-size: 64px;
+    }
+  }
 
-      .form-group {
-        margin-block-end: 1.5rem;
+  .content-container {
+    margin-top: 157px;
+    display: flex;
+    flex-direction: column;
 
-        .upload-button {
-          color: $primary;
+    .form-group {
+      margin-block-end: 1.5rem;
 
-          .input-image {
-            display: none;
-          }
+      .upload-button {
+        color: $primary;
+
+        .input-image {
+          display: none;
         }
       }
     }
   }
-
-
+}

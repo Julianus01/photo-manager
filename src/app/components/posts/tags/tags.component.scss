@@ -1,0 +1,32 @@
+@import '~src/styles/colorPallete.scss';
+
+.tags-container {
+  display: flex;
+
+  .tag {
+    margin-right: 0.5rem;
+    border: 1px solid $border-color;
+    border-radius: 1.5rem;
+    font-size: 14px;
+    display: flex;
+    padding: 0 8px;
+    align-items: center;
+
+    &:hover {
+      .tag-icon {
+        display: unset;
+      }
+    }
+
+    .tag-text {
+      margin-bottom: 2px;
+    }
+
+    .tag-icon {
+      padding-left: 6px;
+      cursor: pointer;
+      color: $icon-light-color;
+      display: none;
+    }
+  }
+}
