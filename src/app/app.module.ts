@@ -31,10 +31,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PostFormDialogComponent } from './components/posts/post-form-dialog/post-form-dialog.component';
 import { ReversePipe } from './utils/pipes/reverse.pipe';
 import { ConfirmationDialogComponent } from './components/shared/confirmation-dialog/confirmation-dialog.component';
+import { TagsComponent } from './components/posts/tags/tags.component';
 
 // Services
 import { CommentsService } from './services/comments/comments.service';
-import { TagsComponent } from './components/posts/tags/tags.component';
+import { TagsService } from './services/tags/tags.service'
+import { Ng4GeoautocompleteModule } from 'ng4-geoautocomplete';
 
 @NgModule({
   declarations: [
@@ -62,10 +64,12 @@ import { TagsComponent } from './components/posts/tags/tags.component';
     FormsModule,
     BrowserAnimationsModule,
     MatDialogModule,
+    Ng4GeoautocompleteModule
   ],
   providers: [
     AuthGuard,
-    CommentsService
+    CommentsService,
+    TagsService
   ],
   bootstrap: [
     AppComponent

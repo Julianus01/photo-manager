@@ -60,6 +60,7 @@ export class PostsService implements OnInit {
             description: post.description,
             date: post.date,
             imgURL: newUrl,
+            location: post.location,
           }
 
           this.postsCollection.doc(id).set(newPost);
@@ -73,12 +74,9 @@ export class PostsService implements OnInit {
     await this.postsCollection.doc(postId).delete();
   }
 
-  public addComment = (postId: string, payload) => {
-    const commentId = this.afs.createId();
-    console.log(postId)
-
+  public addComment = (postId: string, payload) =>
     this.postsCollection.doc(postId).collection('comments').add({ message: payload.message })
-  }
+
 
   public likeOrUnlikePost = async (postId: string, value: boolean): Promise<void> => {
     this.postsCollection.doc(postId).update({
@@ -93,6 +91,7 @@ export interface PostFormData {
   description: string;
   imgFile: File;
   date: string;
+  location: Location;
 }
 
 export interface Post {
@@ -103,4 +102,25 @@ export interface Post {
   date: string;
   isLiked?: boolean;
   comments?: Array<Comment>;
+  location?: Location;
+  dateCreated?: firebase.firestore.Timestamp
+}
+
+export interface Location {
+  description: string;
+  geometry: LocationGeometry;
+  url: string;
+}
+
+export interface LocationGeometry {
+  location: {
+    lat: number;
+    lng: number;
+  };
+  viewport: {
+    east: number;
+    north: number;
+    south: number;
+    west: number;
+  }
 }

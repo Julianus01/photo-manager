@@ -1,21 +1,29 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ViewEncapsulation } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { PostsService } from '../../../services/posts/posts.service';
+import { PostsService, Location } from '../../../services/posts/posts.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-post-form-dialog',
+  encapsulation: ViewEncapsulation.None,
   templateUrl: './post-form-dialog.component.html',
   styleUrls: ['./post-form-dialog.component.scss']
 })
 export class PostFormDialogComponent implements OnInit {
+  locationDomElement: HTMLElement;
+  locationSettings = {
+    showSearchButton: false,
+    inputPlaceholderText: 'Search location',
+  }
 
   isLoading: boolean = false;
 
   imageSelectedURL: string;
   imgFile: File;
-  date: string;
-  description: string;
-  title: string;
+  dateInput: string;
+  descriptionTextarea: string;
+  titleInput: string;
+  locationInput: Location;
 
   tags: Array<string>;
   tag: string;
@@ -27,16 +35,23 @@ export class PostFormDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
+  ngAfterViewInit(): void {
+    this.initLocationDomElement();
+  }
+
   ngOnInit() {
   }
 
-  protected async createPost() {
+  protected async createPost(f: NgForm) {
+    if (f.invalid) return;
+
     try {
       const payload = {
         imgFile: this.imgFile,
-        date: this.date,
-        description: this.description,
-        title: this.title,
+        date: this.dateInput ? this.dateInput : new Date().getTime().toString(),
+        description: this.descriptionTextarea,
+        title: this.titleInput,
+        location: this.locationInput
       }
 
       this.isLoading = true;
@@ -46,6 +61,16 @@ export class PostFormDialogComponent implements OnInit {
       this.close(true);
     } catch (error) {
       this.handleError(error);
+    }
+  }
+
+  protected handleLocationInputChange(data: any) {
+    const { description, url, geometry } = data.data;
+
+    this.locationInput = {
+      description,
+      url,
+      geometry,
     }
   }
 
@@ -63,6 +88,11 @@ export class PostFormDialogComponent implements OnInit {
     reader.onload = (event: any) => this.imageSelectedURL = event.target.result;
 
     reader.readAsDataURL(fileImage);
+  }
+
+  private initLocationDomElement() {
+    this.locationDomElement = document.getElementById('search_places') as HTMLElement;
+    this.locationDomElement.classList.add('form-control')
   }
 
   private handleError = error => {

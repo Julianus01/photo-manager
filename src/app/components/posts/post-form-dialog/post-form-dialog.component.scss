@@ -38,6 +38,52 @@
     display: flex;
     flex-direction: column;
 
+    .location-container {
+
+      #search_places {
+        padding: .5rem 1rem;
+        color: #495057;
+        font-size: .95rem;
+        height: auto;
+
+        &:focus {
+          color: #495057;
+          background-color: #fff;
+          border-color: #007bff;
+          box-shadow: 0 0.313rem 0.719rem rgba(0, 123, 255, .1), 0 0.156rem 0.125rem rgba(0, 0, 0, .06);
+        }
+      }
+
+      .custom-autocomplete__dropdown {
+        border-radius: 0.375rem;
+        border: 1px solid $border-color;
+
+        a {
+          font-size: 12px !important;
+        }
+
+        span {
+          font-size: 12px !important;
+        }
+
+        .custom-icon {
+          display: none;
+        }
+
+        .currentLocation {
+          a {
+            &:hover {
+              background-color: $hover-grey !important;
+            }
+          }
+        }
+
+        .active a {
+          background-color: $hover-grey !important;
+        }
+      }
+    }
+
     .form-group {
       margin-block-end: 1.5rem;
 

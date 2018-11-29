@@ -1,4 +1,4 @@
-<form name=form (ngSubmit)="createPost()" #f="ngForm" class="form-container">
+<form name=form (ngSubmit)="createPost(f)" #f="ngForm" class="form-container">
 
   <!-- Image -->
   <div class="round-absolute">
@@ -15,19 +15,35 @@
       </label>
     </div>
 
-    <!-- Title -->
+    <!-- Location Input -->
+    <div class="location-container form-group">
+      <label for="location">Location</label>
+      <ng4geo-autocomplete [userSettings]=locationSettings name=location (componentCallback)="handleLocationInputChange($event)"></ng4geo-autocomplete>
+    </div>
+
+    <!-- Title Input -->
     <div class="form-group">
       <label for="title">Title</label>
-      <input placeholder="Title" type="text" class="form-control" name=title [(ngModel)]="title" required>
+      <input placeholder="Title" type="text" class="form-control" name=title [(ngModel)]="titleInput" #title="ngModel"
+        [ngClass]="{ 'is-invalid': f.submitted && title.invalid }" required>
+
+      <div *ngIf="f.submitted && title.invalid" class="invalid-feedback">
+        <div *ngIf="title.errors.required">Last Name is required</div>
+      </div>
     </div>
 
-    <!-- Description Textarea -->
+    <!-- Description Input -->
     <div class="form-group">
       <label for="textarea">Description</label>
-      <textarea [(ngModel)]="description" name="textarea" class="form-control" cols="40" rows="5" style="resize: none;"></textarea>
+      <textarea [(ngModel)]="descriptionTextarea" #description="ngModel" name="description" class="form-control" cols="40"
+        rows="5" style="resize: none;" required [ngClass]="{ 'is-invalid': f.submitted && description.invalid }"></textarea>
+
+      <div *ngIf="f.submitted && description.invalid" class="invalid-feedback">
+        <div *ngIf="description.errors.required">Description is required</div>
+      </div>
     </div>
 
-    <!-- Datepicker -->
+    <!-- Datepicker Input -->
     <div class="form-group">
       <label for="datepicker">Date the photo was taken</label>
 
@@ -37,8 +53,8 @@
             <i class="fa fa-calendar-alt"></i>
           </div>
         </div>
-        <input #datePicker [ngModel]="date" (blur)="date = datePicker.value" name="datepicker" type="text" class="form-control date"
-          id="datepicker" data-provide="datepicker">
+
+        <input [(ngModel)]="dateInput" name="date" type="text" class="form-control date" data-provide="datepicker">
       </div>
     </div>
 
