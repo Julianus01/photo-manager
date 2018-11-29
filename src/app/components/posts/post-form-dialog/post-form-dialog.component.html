@@ -3,7 +3,7 @@
   <!-- Image -->
   <div class="round-absolute">
     <i *ngIf="!imgFile" class="fa fa-camera icon-camera"></i>
-    <img class="image-preview" [src]="imageSelectedURL" alt="text">
+    <img *ngIf=imgFile class="image-preview" [src]="imageSelectedURL" alt="text">
   </div>
 
   <!-- Upload image Button -->

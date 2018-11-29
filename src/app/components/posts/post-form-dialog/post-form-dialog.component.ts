@@ -43,9 +43,6 @@ export class PostFormDialogComponent implements OnInit {
   }
 
   protected async createPost(f: NgForm) {
-    console.log(this.dateInput);
-    return;
-
     if (f.invalid) return;
 
     try {

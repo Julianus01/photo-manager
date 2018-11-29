@@ -19,7 +19,6 @@ export class AuthService {
     private afs: AngularFirestore,
     private router: Router,
   ) {
-    // this.authState = this.angularFireAuth.authState;
     this.user = this.angularFireAuth.authState.pipe(
       switchMap(user => {
         if (user) {
@@ -29,11 +28,6 @@ export class AuthService {
         }
       })
     );
-    // this.angularFireAuth.auth.onAuthStateChanged((user: firebase.User) => {
-    //   if (user) {
-    //     this.user = user;
-    //   }
-    // });
   }
 
   public createAccount = async (credentials: EmailPasswordCredentials): Promise<void> => {
@@ -74,7 +68,6 @@ export class AuthService {
       uid: user.uid,
       email: user.email || null,
       displayName: user.displayName,
-      // tslint:disable-next-line:max-line-length
       photoURL: user.photoURL,
       // Optional linked in photo
       // 'https://media.licdn.com/dms/image/C4D03AQGo6Y_IsfiFaQ/profile-displayphoto-shrink_800_800

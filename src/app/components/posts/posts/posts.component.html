@@ -1,15 +1,16 @@
+
 <div class="posts-page">
   <div class="posts-content">
-    <div class="button-container">
+    <section class="button-container">
       <button (click)="openDialog()" class="btn btn-pill">
         <i class="fa fa-camera"></i>
       </button>
-    </div>
+    </section>
 
-    <div class="posts-container">
-      <div *ngFor="let post of posts | async | reverse; trackBy: trackByFn" class=item>
+    <section class="posts-container">
+      <div *ngFor="let post of posts$ | async | reverse; trackBy: trackByFn" class=item>
         <app-post [data]="post"></app-post>
       </div>
-    </div>
+    </section>
   </div>
 </div>

@@ -22,10 +22,11 @@ export class PostComponent implements OnInit {
   inputs = {
     comment: {
       message: '',
+    },
+    tag: {
+      value: '',
     }
   }
-
-  tag: Tag = { value: '' };
 
   constructor(
     public dialog: MatDialog,
@@ -59,9 +60,9 @@ export class PostComponent implements OnInit {
   };
 
   protected async addTag(uid: string): Promise<void> {
-    if (this.shouldTagBeAdded(this.tag)) {
-      await this.tagsService.addTag(uid,  this.data.id, this.tag);
-      this.tag.value = '';
+    if (this.shouldTagBeAdded(this.inputs.tag)) {
+      await this.tagsService.addTag(uid, this.data.id, this.inputs.tag);
+      this.inputs.tag.value = '';
     }
   }
 
@@ -89,8 +90,22 @@ export class PostComponent implements OnInit {
     this.inputs.comment.message = '';
   }
 
-  protected likeOrUnlikePost = async () => {
-    await this.postsService.likeOrUnlikePost(this.data.id, !this.data.isLiked);
+  protected toggleLikeButton = async () => {
+    await this.postsService.toggleLikeButton(this.data.id, !this.data.isLiked);
+  }
+
+  // protected handleCommentInputKeypress(event: any): void {
+  //   // 13 === Enter
+  //   if (event.keyCode === 13) this.inputs.comment.message += '\n';
+  // }
+
+  protected openNewTabWithUrl(url: string) {
+    window.open(url, '_blank').focus();
+  }
+
+  protected openMapsLocationInNewTab() {
+    var win = window.open(this.data.location.url, '_blank');
+    win.focus();
   }
 
 }

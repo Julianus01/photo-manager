@@ -32,7 +32,6 @@ export class PostsService implements OnInit {
 
   public getPosts(uid: string) {
     this.postsCollection = this.afs.collection(uid);
-    // return this.postsCollection.snapshotChanges();
 
     return this.postsCollection.snapshotChanges().pipe(map(actions => {
       return actions.map(a => {
@@ -45,9 +44,7 @@ export class PostsService implements OnInit {
 
   public addPost(post: PostFormData): Promise<Post> {
     return new Promise((resolve, reject) => {
-      console.log(this.user)
       const id = this.afs.createId();
-      console.log('Id:', id);
       const path = `${this.user.uid}/${post.imgFile.name}`;
 
       this.task = this.storage.upload(path, post.imgFile);
@@ -78,7 +75,7 @@ export class PostsService implements OnInit {
     this.postsCollection.doc(postId).collection('comments').add({ message: payload.message })
 
 
-  public likeOrUnlikePost = async (postId: string, value: boolean): Promise<void> => {
+  public toggleLikeButton = async (postId: string, value: boolean): Promise<void> => {
     this.postsCollection.doc(postId).update({
       isLiked: value,
     })

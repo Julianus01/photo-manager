@@ -14,7 +14,6 @@
     .button-container {
       display: flex;
       justify-content: flex-end;
-      padding-top: 24px;
       width: 160px;
 
       .btn {
@@ -31,7 +30,6 @@
 
     .posts-container {
       flex-grow: 1;
-      padding-top: 24px;
       padding-left: 32px;
       display: flex;
       flex-direction: column;

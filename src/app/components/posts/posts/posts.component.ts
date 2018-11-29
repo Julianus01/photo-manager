@@ -4,7 +4,6 @@ import { AuthService, User } from 'src/app/services/auth/auth.service';
 import { Post, PostsService } from 'src/app/services/posts/posts.service';
 import { MatDialog } from '@angular/material';
 import { PostFormDialogComponent } from '../post-form-dialog/post-form-dialog.component';
-import { DocumentChangeAction } from 'angularfire2/firestore';
 
 @Component({
   selector: 'app-posts',
@@ -13,7 +12,7 @@ import { DocumentChangeAction } from 'angularfire2/firestore';
 })
 export class PostsComponent implements OnInit {
 
-  posts: Observable<Post[]>;
+  posts$: Observable<Post[]>;
   imageSelected: File = null;
   imageSelectedURL: string;
 
@@ -25,7 +24,7 @@ export class PostsComponent implements OnInit {
 
   async ngOnInit() {
     this.authService.user.subscribe((user: User): void => {
-      this.posts = this.postsService.getPosts(user.uid);
+      this.posts$ = this.postsService.getPosts(user.uid);
     })
   }
 
