@@ -54,7 +54,8 @@
           </div>
         </div>
 
-        <input [(ngModel)]="dateInput" name="date" type="text" class="form-control date" data-provide="datepicker">
+        <input #datePicker [ngModel]="dateInput" (blur)="dateInput = datePicker.value" name="datepicker" type="text" class="form-control date"
+          id="datepicker" data-provide="datepicker">
       </div>
     </div>
 
