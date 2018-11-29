@@ -21,7 +21,6 @@ import { MatDialogModule } from '@angular/material/dialog';
 
 // Components
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
-import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { LoginFormComponent } from './components/auth/login-form/login-form.component';
 import { RegisterFormComponent } from './components/auth/register-form/register-form.component';
@@ -42,7 +41,6 @@ import { Ng4GeoautocompleteModule } from 'ng4-geoautocomplete';
   declarations: [
     AppComponent,
     NavbarComponent,
-    HomeComponent,
     LoginComponent,
     LoginFormComponent,
     RegisterFormComponent,

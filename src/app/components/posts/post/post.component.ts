@@ -42,20 +42,14 @@ export class PostComponent implements OnInit {
     })
   }
 
-  public openDeleteConfirmationDialog = (id: string): void => {
-    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+  public openDeleteConfirmationDialog = (): void => {
+    this.dialog.open(ConfirmationDialogComponent, {
       width: "400px",
       autoFocus: false,
       data: {
         message: "Are you sure you want to delete this post?",
         confirmationAction: this.deletePost
       }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      // this.snackbarService.open("Deleted", "Close", {
-      //   duration: 3000
-      // });
     });
   };
 
@@ -66,11 +60,7 @@ export class PostComponent implements OnInit {
     }
   }
 
-  private shouldTagBeAdded(tag: Tag): boolean {
-    if (!tag.value) return false;
-
-    return true;
-  }
+  private shouldTagBeAdded = (tag: Tag): boolean => !tag.value ? false : true;
 
   public deletePost = async (): Promise<any> => {
     try {
@@ -93,11 +83,6 @@ export class PostComponent implements OnInit {
   public toggleLikeButton = async () => {
     await this.postsService.toggleLikeButton(this.data.id, !this.data.isLiked);
   }
-
-  // public handleCommentInputKeypress(event: any): void {
-  //   // 13 === Enter
-  //   if (event.keyCode === 13) this.inputs.comment.message += '\n';
-  // }
 
   public openNewTabWithUrl(url: string) {
     window.open(url, '_blank').focus();

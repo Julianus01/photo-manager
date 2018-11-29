@@ -39,10 +39,9 @@ export class PostFormDialogComponent implements OnInit {
     this.initLocationDomElement();
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
-  public async createPost(f: NgForm) {
+  public async createPost(f: NgForm): Promise<void> {
     if (f.invalid) return;
 
     try {
@@ -58,13 +57,13 @@ export class PostFormDialogComponent implements OnInit {
       await this.postsService.addPost(payload);
 
       this.isLoading = false;
-      this.close(true);
+      this.close();
     } catch (error) {
       this.handleError(error);
     }
   }
 
-  public handleLocationInputChange(data: any) {
+  public handleLocationInputChange(data: any): void {
     const { description, url, geometry } = data.data;
 
     this.locationInput = {
@@ -99,8 +98,8 @@ export class PostFormDialogComponent implements OnInit {
     console.log(error);
   }
 
-  private close = (value: boolean): void => {
-    this.dialogRef.close(value);
+  private close = (): void => {
+    this.dialogRef.close();
   }
 
 }

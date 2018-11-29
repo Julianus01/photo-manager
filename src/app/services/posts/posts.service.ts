@@ -3,7 +3,7 @@ import { AngularFirestoreCollection, AngularFirestore } from 'angularfire2/fires
 import { Observable } from 'rxjs';
 import { User, AuthService } from '../auth/auth.service';
 
-import { tap, finalize, map } from 'rxjs/operators';
+import {  map } from 'rxjs/operators';
 import { AngularFireUploadTask, AngularFireStorage } from '@angular/fire/storage';
 
 @Injectable({

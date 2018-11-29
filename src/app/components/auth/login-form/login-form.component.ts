@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService, EmailPasswordCredentials } from 'src/app/services/auth/auth.service';
-import { TouchSequence } from 'selenium-webdriver';
 import { Router } from '@angular/router';
 
 @Component({
@@ -15,13 +14,9 @@ export class LoginFormComponent implements OnInit {
     hasError: false,
     message: '',
   };
-  // model: EmailPasswordCredentials = {
-  //   email: '',
-  //   password: '',
-  // };
   model: EmailPasswordCredentials = {
-    email: 'admin@admin.com',
-    password: 'admin01',
+    email: '',
+    password: '',
   };
 
   constructor(
@@ -42,7 +37,7 @@ export class LoginFormComponent implements OnInit {
 
   public async loginWithFacebook(): Promise<any> {
     try {
-      const result = await this.authService.loginWithFacebook();
+      await this.authService.loginWithFacebook();
       this.goToPosts();
     } catch (error) {
       this.showErrorMessageForMiliseconds(error.message);
@@ -51,7 +46,7 @@ export class LoginFormComponent implements OnInit {
 
   public async loginWithGoogle(): Promise<any> {
     try {
-      const result = await this.authService.loginWithGoogle();
+      await this.authService.loginWithGoogle();
       this.goToPosts();
     } catch (error) {
       this.showErrorMessageForMiliseconds(error.message);

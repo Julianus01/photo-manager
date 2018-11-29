@@ -7,7 +7,6 @@ import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
   styleUrls: ["./confirmation-dialog.component.scss"]
 })
 export class ConfirmationDialogComponent implements OnInit {
-
   isLoading = false;
 
   constructor(

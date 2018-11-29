@@ -42,12 +42,11 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        background-color: rgba(0, 0, 0, 0.6);
+        background-color: rgba(0, 0, 0, 0.4);
         cursor: pointer;
 
         .fa {
           font-size: 60px;
-          // color: $icon-color;
           color: rgba(255, 255, 255, 0.8);
         }
       }
@@ -169,6 +168,12 @@
 
       .location-container {
         cursor: pointer;
+
+        &:hover {
+          span {
+            text-decoration: underline;
+          }
+        }
       }
     }
   }

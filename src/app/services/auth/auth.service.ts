@@ -11,7 +11,6 @@ import { auth } from 'firebase';
   providedIn: 'root'
 })
 export class AuthService {
-  // authState: Observable<firebase.User>;
   user: Observable<User | null>;
 
   constructor(

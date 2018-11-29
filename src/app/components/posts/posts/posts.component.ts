@@ -29,13 +29,9 @@ export class PostsComponent implements OnInit {
   }
 
   openDialog(): void {
-    const dialogRef = this.dialog.open(PostFormDialogComponent, {
+    this.dialog.open(PostFormDialogComponent, {
       width: '500px',
       autoFocus: false,
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      result && console.log('Added');
     });
   }
 
