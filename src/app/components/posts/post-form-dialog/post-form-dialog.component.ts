@@ -42,7 +42,7 @@ export class PostFormDialogComponent implements OnInit {
   ngOnInit() {
   }
 
-  protected async createPost(f: NgForm) {
+  public async createPost(f: NgForm) {
     if (f.invalid) return;
 
     try {
@@ -64,7 +64,7 @@ export class PostFormDialogComponent implements OnInit {
     }
   }
 
-  protected handleLocationInputChange(data: any) {
+  public handleLocationInputChange(data: any) {
     const { description, url, geometry } = data.data;
 
     this.locationInput = {
@@ -74,7 +74,7 @@ export class PostFormDialogComponent implements OnInit {
     }
   }
 
-  protected handleImageInputChange(files): void {
+  public handleImageInputChange(files): void {
     if (!files.item(0)) {
       return;
     }

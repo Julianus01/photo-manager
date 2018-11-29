@@ -31,7 +31,7 @@ export class LoginFormComponent implements OnInit {
 
   ngOnInit() { }
 
-  protected async loginWithEmail(): Promise<any> {
+  public async loginWithEmail(): Promise<any> {
     try {
       await this.authService.loginWithEmail(this.model);
       this.goToPosts();
@@ -40,7 +40,7 @@ export class LoginFormComponent implements OnInit {
     }
   }
 
-  protected async loginWithFacebook(): Promise<any> {
+  public async loginWithFacebook(): Promise<any> {
     try {
       const result = await this.authService.loginWithFacebook();
       this.goToPosts();
@@ -49,7 +49,7 @@ export class LoginFormComponent implements OnInit {
     }
   }
 
-  protected async loginWithGoogle(): Promise<any> {
+  public async loginWithGoogle(): Promise<any> {
     try {
       const result = await this.authService.loginWithGoogle();
       this.goToPosts();

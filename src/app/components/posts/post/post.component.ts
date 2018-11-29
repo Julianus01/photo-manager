@@ -31,7 +31,7 @@ export class PostComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     private postsService: PostsService,
-    private authService: AuthService,
+    public authService: AuthService,
     private commentsService: CommentsService,
     private tagsService: TagsService,
   ) { }
@@ -59,7 +59,7 @@ export class PostComponent implements OnInit {
     });
   };
 
-  protected async addTag(uid: string): Promise<void> {
+  public async addTag(uid: string): Promise<void> {
     if (this.shouldTagBeAdded(this.inputs.tag)) {
       await this.tagsService.addTag(uid, this.data.id, this.inputs.tag);
       this.inputs.tag.value = '';
@@ -72,7 +72,7 @@ export class PostComponent implements OnInit {
     return true;
   }
 
-  protected deletePost = async (): Promise<any> => {
+  public deletePost = async (): Promise<any> => {
     try {
       await this.postsService.deletePost(this.data.id);
     } catch (error) {
@@ -80,30 +80,30 @@ export class PostComponent implements OnInit {
     }
   }
 
-  protected async deleteComment(uid: string, commentId: string): Promise<void> {
+  public async deleteComment(uid: string, commentId: string): Promise<void> {
     await this.commentsService.deleteComment(uid, this.data.id, commentId);
   }
 
-  protected async addComment(uid: string): Promise<void> {
+  public async addComment(uid: string): Promise<void> {
     this.showAddCommentInput = false;
     await this.commentsService.addComment(uid, this.data.id, this.inputs.comment);
     this.inputs.comment.message = '';
   }
 
-  protected toggleLikeButton = async () => {
+  public toggleLikeButton = async () => {
     await this.postsService.toggleLikeButton(this.data.id, !this.data.isLiked);
   }
 
-  // protected handleCommentInputKeypress(event: any): void {
+  // public handleCommentInputKeypress(event: any): void {
   //   // 13 === Enter
   //   if (event.keyCode === 13) this.inputs.comment.message += '\n';
   // }
 
-  protected openNewTabWithUrl(url: string) {
+  public openNewTabWithUrl(url: string) {
     window.open(url, '_blank').focus();
   }
 
-  protected openMapsLocationInNewTab() {
+  public openMapsLocationInNewTab() {
     var win = window.open(this.data.location.url, '_blank');
     win.focus();
   }

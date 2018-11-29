@@ -28,7 +28,7 @@ export class RegisterFormComponent implements OnInit {
   ngOnInit() {
   }
 
-  protected async createAccount() {
+  public async createAccount() {
     try {
       await this.authService.createAccount(this.model);
       this.router.navigate(['/posts']);

@@ -15,7 +15,7 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
   }
 
-  protected showNav = (): boolean =>
+  public showNav = (): boolean =>
     window.location.href.includes('login') ? false : true;
 
 }

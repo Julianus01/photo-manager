@@ -21,7 +21,7 @@ export class TagsComponent implements OnInit {
     this.tags = this.tagsService.getTags(this.user.uid, this.postId);
   }
 
-  protected async deleteTag(tagId: string) {
+  public async deleteTag(tagId: string) {
     await this.tagsService.deleteTag(this.user.uid, this.postId, tagId);
   }
 
